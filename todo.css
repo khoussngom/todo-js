@@ -218,6 +218,8 @@ li:hover {
 }
 
 .error {
+    display: none;
+    width: 90px;
     color: red;
     font-size: 12px;
     background-color: white;

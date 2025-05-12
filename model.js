@@ -8,7 +8,7 @@ export const model = (() => {
 
         const longeur = service.longeurChaine(tache)
 
-        if (longeur < 3 || longeur > 20) return false
+        if (longeur < 3 || longeur >= 20) return false
 
 
         taches = [tache, ...taches];

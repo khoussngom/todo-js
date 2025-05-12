@@ -4,6 +4,7 @@ import { service } from "./todoService.js";
 const input = document.querySelector("#inp");
 const ul = document.querySelector("ul");
 const btn = document.querySelector("#btn");
+const errorlongeur = document.querySelector("#error");
 
 let tache;
 let taches = [];
@@ -11,27 +12,27 @@ let indexchoisi = null;
 
 
 
-
 function ajouter(tache) {
     if (!tache) return;
 
-    const ajoutResult = model.ajouterTaches(tache);
-    console.log(ajoutResult);
 
-    if (ajoutResult === false) {
-        input.value = "";
-        const error = document.createElement("p");
-        error.className = "error";
-        error.textContent = "Le titre doit être compris entre 3 et 20 caractères";
-        input.parentElement.appendChild(error);
-
-        setTimeout(() => {
-            error.remove();
-        }, 5000);
-    }
 
     if (indexchoisi === null) {
-        taches = model.ajouterTaches(tache);
+        const ajoutResult = model.ajouterTaches(tache);
+        if (ajoutResult === false) {
+            input.value = "";
+            input.classList.add("inp");
+            errorlongeur.style.display = "block";
+            errorlongeur.textContent = "Le titre doit être compris entre 3 et 20 caractères";
+            setTimeout(() => {
+                error.remove();
+                input.classList.remove("inp");
+            }, 5000);
+
+        } else {
+            taches = ajoutResult;
+        }
+
     } else {
         taches = model.modifierTaches(tache, indexchoisi);
         indexchoisi = null;
