@@ -57,6 +57,7 @@ function afficher() {
 
 input.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
+        tache = input.value;
         ajouter(tache);
         afficher();
         input.value = "";
@@ -65,6 +66,7 @@ input.addEventListener("keydown", function(e) {
 
 
 btn.addEventListener("click", function() {
+    tache = input.value;
     ajouter(tache);
     afficher();
     input.value = "";
