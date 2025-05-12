@@ -64,11 +64,39 @@ span {
 
 .entrer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    height: 40px;
+    min-height: 150px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
+    padding-left: 80px;
+}
+
+.entrer div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.entrer span {
+    width: 20%;
+}
+
+.description {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 80px;
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 3px 3px 15px rgba(9, 255, 0, 0.712);
+    padding: auto;
 }
 
 input {
@@ -87,6 +115,21 @@ input {
     /* margin-left: -40px; */
 }
 
+.inp {
+    background: linear-gradient(90deg, red 0%, red 5%, white 5%, white 100%);
+}
+
+.red {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 5%;
+    height: 100%;
+    background-color: red;
+    z-index: 1000;
+}
+
 .btn {
     width: 30px;
     height: 35px;
@@ -94,7 +137,7 @@ input {
     border-radius: 5px 5px 5px 5px;
     box-shadow: 1px 1px 10px rgb(0, 0, 0);
     font-weight: bold;
-    margin-left: 20px;
+    margin-left: 50%;
     background-color: green;
     color: white;
     /* margin-top: -30px; */
@@ -172,4 +215,10 @@ li {
 li:hover {
     transform: translateY(3px);
     color: white;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    background-color: white;
 }

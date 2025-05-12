@@ -1,8 +1,16 @@
+import { service } from "./todoService.js";
+
 export const model = (() => {
     let taches = [];
 
     function ajouterTaches(tache) {
         if (!tache || tache.trim() === "") return [...taches];
+
+        const longeur = service.longeurChaine(tache)
+
+        if (longeur < 3 || longeur > 20) return false
+
+
         taches = [tache, ...taches];
         return [...taches];
     }

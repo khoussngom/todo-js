@@ -1,4 +1,5 @@
 import { model } from './model.js';
+import { service } from "./todoService.js";
 
 const input = document.querySelector("#inp");
 const ul = document.querySelector("ul");
@@ -9,8 +10,25 @@ let taches = [];
 let indexchoisi = null;
 
 
+
+
 function ajouter(tache) {
     if (!tache) return;
+
+    const ajoutResult = model.ajouterTaches(tache);
+    console.log(ajoutResult);
+
+    if (ajoutResult === false) {
+        input.value = "";
+        const error = document.createElement("p");
+        error.className = "error";
+        error.textContent = "Le titre doit être compris entre 3 et 20 caractères";
+        input.parentElement.appendChild(error);
+
+        setTimeout(() => {
+            error.remove();
+        }, 5000);
+    }
 
     if (indexchoisi === null) {
         taches = model.ajouterTaches(tache);
@@ -57,6 +75,7 @@ function afficher() {
 
 input.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
+        tache = input.value;
         ajouter(tache);
         afficher();
         input.value = "";
@@ -65,6 +84,7 @@ input.addEventListener("keydown", function(e) {
 
 
 btn.addEventListener("click", function() {
+    tache = input.value;
     ajouter(tache);
     afficher();
     input.value = "";
