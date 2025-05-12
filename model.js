@@ -4,11 +4,14 @@ export const model = (() => {
     let taches = [];
 
     function ajouterTaches(tache) {
-        if (!tache || tache.trim() === "") return [...taches];
+        if (!tache.titre || tache.titre.trim() === "") return [...taches];
 
-        const longeur = service.longeurChaine(tache)
+        const longueur = service.longeurChaine(tache.titre);
+        const longueurDes = service.longeurChaine(tache.description);
 
-        if (longeur < 3 || longeur >= 20) return false
+        if (longueur < 3 || longueur >= 20) return false
+        if (longueurDes >= 100) return true
+
 
 
         taches = [tache, ...taches];
@@ -16,7 +19,7 @@ export const model = (() => {
     }
 
     function modifierTaches(newtaches, index) {
-        if (!newtaches || isNaN(index) || newtaches.trim() === "" || typeof newtaches !== 'string') return [...taches];
+        if (!newtaches.titre || isNaN(index) || newtaches.titre.trim() === "" || typeof newtaches.titre !== 'string') return [...taches];
         taches = taches.map((tache, i) => i === index ? newtaches : tache);
         return [...taches]
     }

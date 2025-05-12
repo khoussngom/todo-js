@@ -5,8 +5,10 @@ const input = document.querySelector("#inp");
 const ul = document.querySelector("ul");
 const btn = document.querySelector("#btn");
 const errorlongeur = document.querySelector("#error");
+const errorDes = document.querySelector("#error1");
 
-let tache;
+const Description = document.querySelector("#description");
+
 let taches = [];
 let indexchoisi = null;
 
@@ -29,6 +31,16 @@ function ajouter(tache) {
                 input.classList.remove("inp");
             }, 5000);
 
+        } else if (ajoutResult === true) {
+            Description.value = "";
+            Description.classList.add("inp");
+            errorDes.style.display = "block";
+            errorDes.textContent = "La description doit être au maximum 100 caractères";
+            setTimeout(() => {
+                error.remove();
+                Description.classList.remove("inp");
+            }, 5000);
+
         } else {
             taches = ajoutResult;
         }
@@ -48,7 +60,7 @@ function afficher() {
     taches.forEach((tache, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
-            <span class="tache">${tache}</span>
+            <span class="tache"><span class="titr">${tache.titre}</span><span class="des">${tache.description}</span></span>
             <span>
                 <button class="modifier"><i class='bx bxs-edit'></i></button>
                 <button class="supprimer"><i class='bx bxs-trash-alt'></i></button>
@@ -59,7 +71,8 @@ function afficher() {
 
 
         btnModifier.addEventListener("click", () => {
-            input.value = tache;
+            input.value = tache.titre;
+            Description.value = tache.description;
             indexchoisi = index;
 
         });
@@ -74,21 +87,31 @@ function afficher() {
     });
 }
 
-input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        tache = input.value;
-        ajouter(tache);
-        afficher();
-        input.value = "";
+function add() {
+    const tache = {
+        titre: input.value,
+        description: Description.value
     }
-});
-
-
-btn.addEventListener("click", function() {
-    tache = input.value;
     ajouter(tache);
     afficher();
     input.value = "";
+    Description.value = "";
+}
+
+input.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        add();
+    }
+});
+
+Description.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        add();
+    }
+});
+
+btn.addEventListener("click", function() {
+    add();
 });
 
 
