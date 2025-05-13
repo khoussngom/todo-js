@@ -11,7 +11,7 @@ body {
     background-color: rgb(7, 49, 49);
     height: 100vh;
     width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .container {
@@ -214,7 +214,7 @@ span .titr {
 
 .spa {
     text-decoration: line-through;
-    color: rgb(255, 0, 0);
+    color: rgb(102, 102, 102);
 }
 
 .btn:hover {
@@ -237,4 +237,51 @@ li:hover {
     color: red;
     font-size: 12px;
     background-color: white;
+}
+
+.date {
+    font-size: 12px;
+}
+
+.form {
+    margin-top: 20px;
+    display: none;
+    justify-content: space-between;
+    gap: 10px;
+    width: 500px;
+}
+
+.checkbi {
+    display: flex;
+    gap: 10px;
+}
+
+.suppAll {
+    position: relative;
+    color: white;
+    cursor: pointer;
+    background-color: red;
+    padding: 2px 10px 2px 10px;
+    font-size: 20px;
+}
+
+.toutSelect,
+.select {
+    width: 15px;
+    height: 15px;
+    border-radius: none;
+    box-shadow: none;
+}
+
+.select {
+    margin-right: 60px;
+}
+
+.tlt {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.des {
+    margin-left: 12%;
 }

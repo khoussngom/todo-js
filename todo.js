@@ -6,12 +6,16 @@ const ul = document.querySelector("ul");
 const btn = document.querySelector("#btn");
 const errorlongeur = document.querySelector("#error");
 const errorDes = document.querySelector("#error1");
+const selectAll = document.querySelector("#toutSelec");
+const suppAll = document.querySelector("#suppAll");
 
 const Description = document.querySelector("#description");
 
+
+
+
 let taches = [];
 let indexchoisi = null;
-
 
 
 function ajouter(tache) {
@@ -53,14 +57,36 @@ function ajouter(tache) {
 }
 
 
+selectAll.addEventListener("click", function() {
+    const listSuppression = service.toutCocher();
+    suppAll.addEventListener("click", function() {
+        model.supprimerListeTaches(listSuppression);
+        afficher();
+    })
+})
+
+
+
 function afficher() {
     ul.innerHTML = "";
     taches = model.afficherTaches();
 
+    if (taches.length > 0) {
+        document.querySelector('.form').style.display = "flex";
+    } else {
+        document.querySelector('.form').style.display = "none";
+    }
+
+
     taches.forEach((tache, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
-            <span class="tache"><span class="titr">${tache.titre}</span><span class="des">${tache.description}</span></span>
+            <input type="checkbox" name="selec" id="selec" class="select">
+            <span class="tache">
+                <span class="titr">${tache.titre}</span>
+                <span class="des">${tache.description}</span>
+                <span class="date">${tache.date}</span>
+            </span>
             <span>
                 <button class="modifier"><i class='bx bxs-edit'></i></button>
                 <button class="supprimer"><i class='bx bxs-trash-alt'></i></button>
@@ -68,6 +94,13 @@ function afficher() {
 
         const btnModifier = li.querySelector(".modifier");
         const btnSupprimer = li.querySelector(".supprimer");
+
+
+
+        const task = li.querySelector(".titr");
+        task.addEventListener("click", () => {
+            task.classList.toggle("spa");
+        });
 
 
         btnModifier.addEventListener("click", () => {
@@ -90,7 +123,8 @@ function afficher() {
 function add() {
     const tache = {
         titre: input.value,
-        description: Description.value
+        description: Description.value,
+        date: service.dateTime()
     }
     ajouter(tache);
     afficher();
@@ -113,6 +147,7 @@ Description.addEventListener("keydown", function(e) {
 btn.addEventListener("click", function() {
     add();
 });
+
 
 
 afficher();

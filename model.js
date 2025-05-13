@@ -29,9 +29,16 @@ export const model = (() => {
         return [...taches]
     }
 
+    function supprimerListeTaches(listeSuppression) {
+        taches = taches.filter((tache, index) => !listeSuppression[index]);
+
+        return [...taches];
+    }
+
+
     function afficherTaches() {
         return [...taches]
     }
 
-    return { ajouterTaches, modifierTaches, supprimerTaches, afficherTaches };
+    return { ajouterTaches, modifierTaches, supprimerTaches, afficherTaches, supprimerListeTaches };
 })();
