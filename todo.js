@@ -46,6 +46,10 @@ function afficher() {
         });
 
 
+        li.querySelector('span.tache').addEventListener("click", () => {
+            li.querySelector('span.tache').classList.toggle('spa');
+        });
+
         btnSupprimer.addEventListener("click", () => {
             taches = model.supprimerTaches(index);
             afficher();
