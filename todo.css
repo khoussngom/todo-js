@@ -258,6 +258,7 @@ li:hover {
 
 .suppAll {
     position: relative;
+    display: none;
     color: white;
     cursor: pointer;
     background-color: red;

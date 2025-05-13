@@ -24,10 +24,5 @@ export const service = (() => {
             return Array.from(checkboxes).map(checkbox => checkbox.checked);
         }
 
-
-
-
-
-
     }
 })()

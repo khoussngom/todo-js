@@ -8,7 +8,7 @@ const errorlongeur = document.querySelector("#error");
 const errorDes = document.querySelector("#error1");
 const selectAll = document.querySelector("#toutSelec");
 const suppAll = document.querySelector("#suppAll");
-
+const checkb = document.querySelectorAll('.select');
 const Description = document.querySelector("#description");
 
 
@@ -59,6 +59,7 @@ function ajouter(tache) {
 
 selectAll.addEventListener("click", function() {
     const listSuppression = service.toutCocher();
+    suppAll.style.display = (listSuppression.length < 1) ? 'none' : 'block';
     suppAll.addEventListener("click", function() {
         model.supprimerListeTaches(listSuppression);
         afficher();
@@ -94,6 +95,21 @@ function afficher() {
 
         const btnModifier = li.querySelector(".modifier");
         const btnSupprimer = li.querySelector(".supprimer");
+
+        const selec = li.querySelector("#selec");
+        selec.addEventListener("click", () => {
+            suppAll.style.display = Array.from(ul.children)
+                .some(li => li.querySelector(".select").checked) ? 'block' : 'none';
+
+            suppAll.onclick = () => {
+                const list = Array.from(ul.children)
+                    .map(li => li.querySelector(".select").checked ? true : false);
+
+                console.log(list);
+                model.supprimerListeTaches(list);
+                afficher();
+            };
+        });
 
 
 
